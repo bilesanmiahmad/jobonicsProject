@@ -25,11 +25,17 @@ class Country(models.Model):
     created_by = models.ForeignKey('auth.User', related_name='countries', on_delete=models.CASCADE)
     date_created = models.DateField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 
 class EntitySize(models.Model):
     size_info = models.CharField(max_length=15)
     created_by = models.ForeignKey('auth.User', related_name='entity_sizes', on_delete=models.CASCADE)
     date_created = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.size_info
 
 
 class Entity(models.Model):
@@ -58,11 +64,17 @@ class Industry(models.Model):
     date_created = models.DateField(auto_now=True)
     created_by = models.ForeignKey('auth.User', related_name='industries', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class Profession(models.Model):
     name = models.CharField(max_length=20)
     date_created = models.DateField(auto_now=True)
     created_by = models.ForeignKey('auth.User', related_name='professions', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class JobType(models.Model):
@@ -70,12 +82,18 @@ class JobType(models.Model):
     date_created = models.DateField(auto_now=True)
     created_by = models.ForeignKey('auth.User', related_name='job_types', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class JobStatus(models.Model):
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=100)
     date_created = models.DateField(auto_now=True)
     created_by = models.ForeignKey('auth.User', related_name='statuses', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
 class Job(models.Model):
@@ -101,6 +119,9 @@ class ApplicationStage(models.Model):
     rank = models.IntegerField()
     date_created = models.DateField(auto_now=True)
     created_by = models.ForeignKey('auth.User', related_name='app_stages', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.status
 
 
 class Applications(models.Model):
